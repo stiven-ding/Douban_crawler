@@ -15,6 +15,7 @@ def stringToDict (cookie):
         itemDict [key] = value
     return itemDict
 
+
 class UrlSpider(scrapy.Spider):
     name = "url_spider"
 
@@ -22,7 +23,7 @@ class UrlSpider(scrapy.Spider):
         'AUTOTHROTTLE_ENABLED': True,
         'AUTOTHROTTLE_START_DELAY': 1,
         'AUTOTHROTTLE_MAX_DELAY': 3,
-        'AUTOTHROTTLE_TARGET_CONCURRENCY': 0.3,
+        'AUTOTHROTTLE_TARGET_CONCURRENCY': 0.2,
         'LOG_LEVEL': 'INFO'
     }
 
@@ -35,9 +36,9 @@ class UrlSpider(scrapy.Spider):
 
         i = 0
         for item in url_db_json:
-            if i > -1:
-                yield scrapy.Request(url=item['movie_url'], callback=self.parse, cookies=cookies,
-                meta={'movie_id': item['movie_id'], 'title': item['title'], 'movie_url': item['movie_url'], 'index': i, 'total': len(url_db_json), 'playwright': True})
+            if i > 107:
+                yield scrapy.Request(url=item['search_url'], callback=self.parse, cookies=cookies,
+                meta={'title': item['title'], 'index': i, 'total': len(url_db_json), 'playwright': True})
             i = i + 1
 
     def parse(self, response):
@@ -46,18 +47,22 @@ class UrlSpider(scrapy.Spider):
             print("No result for " + response.meta['title'])
 
             yield {
-                'movie_id': response.meta['movie_id'],
+                'index': response.meta['index'],
+                'total': response.meta['total'],
+                'movie_id': 'NA',
                 'title': response.meta['title'], 
-                'url': response.meta['movie_url']
+                'url': 'NA',
             }
 
         else: 
             item = response.css('div.item-root')[0]
 
             yield {
-                'movie_id': response.meta['movie_id'],
+                'index': response.meta['index'],
+                'total': response.meta['total'],
+                'movie_id': item.css("a::attr(href)").get().split('/')[4],
                 'title': response.meta['title'], 
-                'url': response.meta['movie_url']
+                'url': item.css("a::attr(href)").get(),
             }
 
         print(str(response.meta['index']) + " / " + str(response.meta['total']))

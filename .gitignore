@@ -1,3 +1,5 @@
 crawls/
-tutorial/spiders/__pycache__/
+tutorial/__pycache__
+tutorial/spiders/__pycache__
 .DS_Store
+.venv/

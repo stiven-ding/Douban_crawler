@@ -19,6 +19,8 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
+USER_AGENT = 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; http://www.google.com/bot.html) Chrome/W.X.Y.Z‡ Safari/537.36'
+
 #USER_AGENT = 'Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
 
 # Obey robots.txt rules
@@ -58,25 +60,35 @@ ROBOTSTXT_OBEY = False
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
-    'tutorial.middlewares.TooManyRequestsRetryMiddleware': "543",   
     'scrapy_random_fake_ua.middleware.RandomUserAgentMiddleware': 400,
+    #'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+    #'tutorial.middlewares.TooManyRequestsRetryMiddleware': 543
 }
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-PLAYWRIGHT_BROWSER_TYPE = "firefox"
-PLAYWRIGHT_MAX_CONTEXTS = 3
-
+PLAYWRIGHT_BROWSER_TYPE = "chromium"
+PLAYWRIGHT_MAX_CONTEXTS = 1
+PLAYWRIGHT_MAX_PAGES_PER_CONTEXT = 5
+#CONCURRENT_REQUESTS = 10
+PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT=40 * 1000
+COOKIES_ENABLED = True
 PLAYWRIGHT_LAUNCH_OPTIONS = {
     "headless": False,
-    "timeout": 20 * 1000,  # 20 seconds
-    #"proxy": {
-    #    'server': 'http://127.0.0.1:7890',
-    #    'username': '',
-    #    'password': ''
-    #}
+    "timeout": 30 * 1000,  # 20 seconds
+    "proxy": {
+        'server': 'socks5://127.0.0.1:7890',
+        'username': '',
+        'password': ''
+    }
 }
+PLAYWRIGHT_CONTEXTS = {
+    "persistent": {
+        "user_data_dir": "/Users/stivending/Library/Application Support/Chromium/Default/",
+        #"java_script_enabled": True,
+        "headless": False
+    }
+}
+
 PLAYWRIGHT_ACCEPT_REQUEST_PREDICATE_TYPE = ["image", "Doc", "Media"]
-COOKIES_ENABLED = True
 
 #DOWNLOADER_MIDDLEWARES = {  
 #    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
@@ -90,7 +102,7 @@ COOKIES_ENABLED = True
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
-RETRY_HTTP_CODES = [429]
+RETRY_HTTP_CODES = [429, 403, 302]
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
