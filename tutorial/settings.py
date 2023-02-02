@@ -55,14 +55,34 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {  
+DOWNLOAD_HANDLERS = {
+    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
-    'tutorial.middlewares.TooManyRequestsRetryMiddleware': 543,   
+    'tutorial.middlewares.TooManyRequestsRetryMiddleware': "543",   
     'scrapy_random_fake_ua.middleware.RandomUserAgentMiddleware': 400,
-#    'scrapy_splash.SplashCookiesMiddleware': 723, 
-#    'scrapy_splash.SplashMiddleware': 725, 
-#    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810, 
 }
+TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+PLAYWRIGHT_BROWSER_TYPE = "firefox"
+PLAYWRIGHT_MAX_CONTEXTS = 3
+
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+    "headless": False,
+    "timeout": 20 * 1000,  # 20 seconds
+    #"proxy": {
+    #    'server': 'http://127.0.0.1:7890',
+    #    'username': '',
+    #    'password': ''
+    #}
+}
+PLAYWRIGHT_ACCEPT_REQUEST_PREDICATE_TYPE = ["image", "Doc", "Media"]
+COOKIES_ENABLED = True
+
+#DOWNLOADER_MIDDLEWARES = {  
+#    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+#    'tutorial.middlewares.TooManyRequestsRetryMiddleware': 543,   
+#    'scrapy_random_fake_ua.middleware.RandomUserAgentMiddleware': 400,
+#}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

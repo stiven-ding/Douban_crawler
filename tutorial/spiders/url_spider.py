@@ -1,38 +1,65 @@
 import scrapy
 from furl import furl
 from datetime import date
+import json
 
+
+def stringToDict (cookie):
+    itemDict = {}
+    items = cookie.split(';')
+    for item in items:
+        if item == '':
+            continue
+        key = item.split('=')[0].replace(' ','')
+        value = item.split ('=') [1]
+        itemDict [key] = value
+    return itemDict
 
 class UrlSpider(scrapy.Spider):
     name = "url_spider"
 
     custom_settings = {
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_START_DELAY': 1,
+        'AUTOTHROTTLE_MAX_DELAY': 3,
+        'AUTOTHROTTLE_TARGET_CONCURRENCY': 0.3,
         'LOG_LEVEL': 'INFO'
     }
-    def start_requests(self):
-        catagories = {"emergency": 2, "animals": 3, "family": 4, "business": 5, "event": 6, "community": 7,
-                      "creative": 8, "memorial": 9, "travel": 10, "medical": 11, "faith": 12, "non_profit": 13,
-                      "miscellaneous": 15, "sports": 16, "volunteer": 18, "competition": 19, "wishes": 20,
-                      "financial_emergency": 344, "environment": 342}
 
-        for cname in catagories:
-            cid = catagories[cname]
-            for page in range(1, 10):
-                url = "https://www.gofundme.com/mvc.php?route=categorypages/load_more&page=" + str(page) + "&term=&cid=" + str(cid) 
-                yield scrapy.Request(url=url, callback=self.parse, meta={'catagory': cname})
+    def start_requests(self):
+        url_db_file = open('./url/movie_list.json', 'r')
+        url_db_json = json.load(url_db_file)
+
+        cookies_string = 'bid=QVMqdux_yng; __utmz=30149280.1675240183.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); ll="118231"; __utma=30149280.1313131172.1675240183.1675240183.1675242740.2; ap_v=0,6.0; ck=AFY0; push_noty_num=0; push_doumail_num=0; _pk_id.100001.8cb4=9a5a279f14f0e179.1675247517.2.1675305541.1675247517.; _pk_ses.100001.8cb4=*'
+        cookies = stringToDict(cookies_string)
+
+        i = 0
+        for item in url_db_json:
+            if i > -1:
+                yield scrapy.Request(url=item['movie_url'], callback=self.parse, cookies=cookies,
+                meta={'movie_id': item['movie_id'], 'title': item['title'], 'movie_url': item['movie_url'], 'index': i, 'total': len(url_db_json), 'playwright': True})
+            i = i + 1
 
     def parse(self, response):
-        cname = response.meta['catagory']
+        
+        if len(response.css('div.item-root')) == 0:
+            print("No result for " + response.meta['title'])
 
-        for item in response.css('div.grid-item'):
             yield {
-                'id': item.css("a::attr(aria-labelledby)").get(),
-                'url': item.css("a::attr(href)").get(),
-                'title': item.css("div.fund-title.show-for-medium::text").get(), 
-                'image': item.css("div.campaign-tile-img--contain::attr(data-original)").get(),
-                'catagory': cname,
-                'location': item.css("div.fund-location").css("span::text").get(),
-                'date_url_discovered': date.today().strftime("%Y-%m-%d"),
+                'movie_id': response.meta['movie_id'],
+                'title': response.meta['title'], 
+                'url': response.meta['movie_url']
             }
+
+        else: 
+            item = response.css('div.item-root')[0]
+
+            yield {
+                'movie_id': response.meta['movie_id'],
+                'title': response.meta['title'], 
+                'url': response.meta['movie_url']
+            }
+
+        print(str(response.meta['index']) + " / " + str(response.meta['total']))
 
  
