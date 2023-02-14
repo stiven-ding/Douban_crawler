@@ -1,0 +1,177 @@
+14-Feb-2023-13:31:53 [CRAWLER] [R] Starting review scrap for 10438503
+2023-02-14 13:31:55 [scrapy.utils.log] INFO: Scrapy 2.7.1 started (bot: tutorial)
+2023-02-14 13:31:55 [scrapy.utils.log] INFO: Versions: lxml 4.9.2.0, libxml2 2.9.14, cssselect 1.2.0, parsel 1.7.0, w3lib 2.1.1, Twisted 22.10.0, Python 3.10.8 (main, Oct 13 2022, 10:17:43) [Clang 14.0.0 (clang-1400.0.29.102)], pyOpenSSL 23.0.0 (OpenSSL 3.0.7 1 Nov 2022), cryptography 39.0.0, Platform macOS-13.1-x86_64-i386-64bit
+2023-02-14 13:31:55 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'AUTOTHROTTLE_MAX_DELAY': 4,
+ 'AUTOTHROTTLE_START_DELAY': 1,
+ 'BOT_NAME': 'tutorial',
+ 'DUPEFILTER_CLASS': 'scrapy.dupefilters.BaseDupeFilter',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'tutorial.spiders',
+ 'RETRY_HTTP_CODES': [429, 403, 302],
+ 'SPIDER_MODULES': ['tutorial.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': 'Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) '
+               'AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'}
+2023-02-14 13:31:55 [py.warnings] WARNING: /Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/scrapy/utils/request.py:231: ScrapyDeprecationWarning: '2.6' is a deprecated value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting.
+
+It is also the default value. In other words, it is normal to get this warning if you have not defined a value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting. This is so for backward compatibility reasons, but it will change in a future version of Scrapy.
+
+See the documentation of the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting for information on how to handle this deprecation.
+  return cls(crawler)
+
+2023-02-14 13:31:55 [scrapy.extensions.telnet] INFO: Telnet Password: 973b7ca054196dcb
+2023-02-14 13:31:55 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle']
+2023-02-14 13:31:55 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2023-02-14 13:31:55 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2023-02-14 13:31:55 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2023-02-14 13:31:55 [scrapy.core.engine] INFO: Spider opened
+2023-02-14 13:31:55 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2023-02-14 13:31:55 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2023-02-14 13:31:55 [scrapy-playwright] INFO: Starting download handler
+2023-02-14 13:31:55 [scrapy-playwright] INFO: Starting download handler
+2023-02-14 13:31:56 [scrapy-playwright] INFO: Launching 2 startup context(s)
+2023-02-14 13:31:56 [scrapy-playwright] INFO: Launching 2 startup context(s)
+2023-02-14 13:31:58 [scrapy.utils.signal] ERROR: Error caught on signal handler: <bound method ScrapyPlaywrightDownloadHandler._engine_started of <scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler object at 0x105727f40>>
+Traceback (most recent call last):
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/twisted/internet/defer.py", line 1065, in adapt
+    extracted = result.result()
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/scrapy_playwright/handler.py", line 133, in _launch
+    await asyncio.gather(
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/scrapy_playwright/handler.py", line 158, in _create_browser_context
+    context = await self.browser_type.launch_persistent_context(**context_kwargs)
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/async_api/_generated.py", line 14584, in launch_persistent_context
+    await self._impl_obj.launch_persistent_context(
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/_impl/_browser_type.py", line 155, in launch_persistent_context
+    from_channel(await self._channel.send("launchPersistentContext", params)),
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 44, in send
+    return await self._connection.wrap_api_call(
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 419, in wrap_api_call
+    return await cb()
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 79, in inner_send
+    result = next(iter(done)).result()
+playwright._impl._api_types.Error: Browser closed.
+==================== Browser output: ====================
+<launching> /Users/stivending/Library/Caches/ms-playwright/chromium-1045/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-sync --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --enable-use-zoom-for-dsf=false --no-sandbox --user-data-dir=/Users/stivending/Library/Application Support/Chromium/Default --remote-debugging-pipe about:blank
+<launched> pid=17822
+[pid=17822][err] objc[17854]: Class WebSwapCGLLayer is implemented in both /System/Library/Frameworks/WebKit.framework/Versions/A/Frameworks/WebCore.framework/Versions/A/Frameworks/libANGLE-shared.dylib (0x7ffa594883b0) and /Users/stivending/Library/Caches/ms-playwright/chromium-1045/chrome-mac/Chromium.app/Contents/Frameworks/Chromium Framework.framework/Versions/110.0.5481.38/Libraries/libGLESv2.dylib (0x10a364248). One of the two will be used. Which one is undefined.
+[pid=17822][out] Opening in existing browser session.
+=========================== logs ===========================
+<launching> /Users/stivending/Library/Caches/ms-playwright/chromium-1045/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-sync --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --enable-use-zoom-for-dsf=false --no-sandbox --user-data-dir=/Users/stivending/Library/Application Support/Chromium/Default --remote-debugging-pipe about:blank
+<launched> pid=17822
+[pid=17822][err] objc[17854]: Class WebSwapCGLLayer is implemented in both /System/Library/Frameworks/WebKit.framework/Versions/A/Frameworks/WebCore.framework/Versions/A/Frameworks/libANGLE-shared.dylib (0x7ffa594883b0) and /Users/stivending/Library/Caches/ms-playwright/chromium-1045/chrome-mac/Chromium.app/Contents/Frameworks/Chromium Framework.framework/Versions/110.0.5481.38/Libraries/libGLESv2.dylib (0x10a364248). One of the two will be used. Which one is undefined.
+[pid=17822][out] Opening in existing browser session.
+============================================================
+2023-02-14 13:31:58 [scrapy.utils.signal] ERROR: Error caught on signal handler: <bound method ScrapyPlaywrightDownloadHandler._engine_started of <scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler object at 0x1051a19c0>>
+Traceback (most recent call last):
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/twisted/internet/defer.py", line 1065, in adapt
+    extracted = result.result()
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/scrapy_playwright/handler.py", line 133, in _launch
+    await asyncio.gather(
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/scrapy_playwright/handler.py", line 158, in _create_browser_context
+    context = await self.browser_type.launch_persistent_context(**context_kwargs)
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/async_api/_generated.py", line 14584, in launch_persistent_context
+    await self._impl_obj.launch_persistent_context(
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/_impl/_browser_type.py", line 155, in launch_persistent_context
+    from_channel(await self._channel.send("launchPersistentContext", params)),
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 44, in send
+    return await self._connection.wrap_api_call(
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 419, in wrap_api_call
+    return await cb()
+  File "/Users/stivending/Public/Local/Douban_crawler/.venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 79, in inner_send
+    result = next(iter(done)).result()
+playwright._impl._api_types.Error: Browser closed.
+==================== Browser output: ====================
+<launching> /Users/stivending/Library/Caches/ms-playwright/chromium-1045/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-sync --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --enable-use-zoom-for-dsf=false --no-sandbox --user-data-dir=/Users/stivending/Library/Application Support/Chromium/Default --remote-debugging-pipe about:blank
+<launched> pid=17823
+[pid=17823][err] objc[17853]: Class WebSwapCGLLayer is implemented in both /System/Library/Frameworks/WebKit.framework/Versions/A/Frameworks/WebCore.framework/Versions/A/Frameworks/libANGLE-shared.dylib (0x7ffa594883b0) and /Users/stivending/Library/Caches/ms-playwright/chromium-1045/chrome-mac/Chromium.app/Contents/Frameworks/Chromium Framework.framework/Versions/110.0.5481.38/Libraries/libGLESv2.dylib (0x117a64248). One of the two will be used. Which one is undefined.
+[pid=17823][out] Opening in existing browser session.
+=========================== logs ===========================
+<launching> /Users/stivending/Library/Caches/ms-playwright/chromium-1045/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-sync --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --enable-use-zoom-for-dsf=false --no-sandbox --user-data-dir=/Users/stivending/Library/Application Support/Chromium/Default --remote-debugging-pipe about:blank
+<launched> pid=17823
+[pid=17823][err] objc[17853]: Class WebSwapCGLLayer is implemented in both /System/Library/Frameworks/WebKit.framework/Versions/A/Frameworks/WebCore.framework/Versions/A/Frameworks/libANGLE-shared.dylib (0x7ffa594883b0) and /Users/stivending/Library/Caches/ms-playwright/chromium-1045/chrome-mac/Chromium.app/Contents/Frameworks/Chromium Framework.framework/Versions/110.0.5481.38/Libraries/libGLESv2.dylib (0x117a64248). One of the two will be used. Which one is undefined.
+[pid=17823][out] Opening in existing browser session.
+============================================================
+2023-02-14 13:32:00 [scrapy-playwright] INFO: Launching browser chromium
+2023-02-14 13:32:01 [scrapy-playwright] INFO: Browser chromium launched
+2023-02-14 13:32:19 [scrapy.spidermiddlewares.httperror] INFO: Ignoring response <404 https://movie.douban.com/subject/10438503/comments?start=200&limit=200&status=P&sort=time>: HTTP status code is not handled or not allowed
+2023-02-14 13:32:19 [scrapy.core.engine] INFO: Closing spider (finished)
+2023-02-14 13:32:19 [scrapy.extensions.feedexport] INFO: Stored csv feed (200 items) in: ./review_latest/499_10438503.csv
+2023-02-14 13:32:19 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 821,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 445423,
+ 'downloader/response_count': 2,
+ 'downloader/response_status_count/200': 1,
+ 'downloader/response_status_count/404': 1,
+ 'elapsed_time_seconds': 23.875967,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2023, 2, 14, 5, 32, 19, 601948),
+ 'httperror/response_ignored_count': 1,
+ 'httperror/response_ignored_status_count/404': 1,
+ 'item_scraped_count': 200,
+ 'log_count/ERROR': 2,
+ 'log_count/INFO': 18,
+ 'log_count/WARNING': 1,
+ 'memusage/max': 68997120,
+ 'memusage/startup': 68997120,
+ 'playwright/context_count': 2,
+ 'playwright/context_count/max_concurrent': 1,
+ 'playwright/context_count/non-persistent': 1,
+ 'playwright/context_count/persistent': 1,
+ 'playwright/page_count': 2,
+ 'playwright/page_count/closed': 2,
+ 'playwright/page_count/max_concurrent': 1,
+ 'playwright/request_count': 245,
+ 'playwright/request_count/method/GET': 245,
+ 'playwright/request_count/navigation': 2,
+ 'playwright/request_count/resource_type/document': 2,
+ 'playwright/request_count/resource_type/image': 210,
+ 'playwright/request_count/resource_type/script': 21,
+ 'playwright/request_count/resource_type/stylesheet': 11,
+ 'playwright/request_count/resource_type/xhr': 1,
+ 'playwright/response_count': 244,
+ 'playwright/response_count/method/GET': 244,
+ 'playwright/response_count/resource_type/document': 2,
+ 'playwright/response_count/resource_type/image': 210,
+ 'playwright/response_count/resource_type/script': 20,
+ 'playwright/response_count/resource_type/stylesheet': 11,
+ 'playwright/response_count/resource_type/xhr': 1,
+ 'request_depth_max': 1,
+ 'response_received_count': 2,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2023, 2, 14, 5, 31, 55, 725981)}
+2023-02-14 13:32:19 [scrapy.core.engine] INFO: Spider closed (finished)
+2023-02-14 13:32:19 [scrapy-playwright] INFO: Closing download handler
+2023-02-14 13:32:19 [scrapy-playwright] INFO: Closing download handler
+2023-02-14 13:32:19 [scrapy-playwright] INFO: Closing browser
+14-Feb-2023-13:32:20 [CRAWLER] [R] Finished review scrap for 10438503

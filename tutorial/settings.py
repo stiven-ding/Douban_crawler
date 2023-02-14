@@ -19,9 +19,9 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; http://www.google.com/bot.html) Chrome/W.X.Y.Z‡ Safari/537.36'
+#USER_AGENT='Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; http://www.google.com/bot.html) Chrome/W.X.Y.Z‡ Safari/537.36'
 
-#USER_AGENT = 'Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
+USER_AGENT = 'Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -60,27 +60,32 @@ ROBOTSTXT_OBEY = False
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-    'scrapy_random_fake_ua.middleware.RandomUserAgentMiddleware': 400,
+    #'scrapy_random_fake_ua.middleware.RandomUserAgentMiddleware': 400,
     #'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
     #'tutorial.middlewares.TooManyRequestsRetryMiddleware': 543
 }
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 PLAYWRIGHT_BROWSER_TYPE = "chromium"
-PLAYWRIGHT_MAX_CONTEXTS = 1
-PLAYWRIGHT_MAX_PAGES_PER_CONTEXT = 5
+#PLAYWRIGHT_MAX_CONTEXTS = 2
+#PLAYWRIGHT_MAX_PAGES_PER_CONTEXT = 4
 #CONCURRENT_REQUESTS = 10
-PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT=40 * 1000
+#PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT=40 * 1000
 COOKIES_ENABLED = True
 PLAYWRIGHT_LAUNCH_OPTIONS = {
     "headless": False,
     "timeout": 30 * 1000,  # 20 seconds
-    "proxy": {
-        'server': 'socks5://127.0.0.1:7890',
-        'username': '',
-        'password': ''
-    }
+    #"proxy": {
+    #    'server': 'socks5://127.0.0.1:7890',
+    #    'username': '',
+    #    'password': ''
+    #}
 }
 PLAYWRIGHT_CONTEXTS = {
+    "default": {
+        "user_data_dir": "/Users/stivending/Library/Application Support/Chromium/Default/",
+        #"java_script_enabled": True,
+        "headless": False
+    },
     "persistent": {
         "user_data_dir": "/Users/stivending/Library/Application Support/Chromium/Default/",
         #"java_script_enabled": True,
@@ -88,7 +93,7 @@ PLAYWRIGHT_CONTEXTS = {
     }
 }
 
-PLAYWRIGHT_ACCEPT_REQUEST_PREDICATE_TYPE = ["image", "Doc", "Media"]
+#PLAYWRIGHT_ACCEPT_REQUEST_PREDICATE_TYPE = ["image", "Doc", "Media"]
 
 #DOWNLOADER_MIDDLEWARES = {  
 #    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
